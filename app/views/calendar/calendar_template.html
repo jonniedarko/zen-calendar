@@ -1,0 +1,38 @@
+<div id="cal" data-ng-init="init()">
+
+	<!--<button disabled>Today</button><button data-ng-click="perviousMonth()">&lt;</button><button data-ng-click="nextMonth()">&gt;</button> -->
+	<table class="cal-header">
+		<tbody>
+			<tr>
+				<td class="cal-header-left">
+					<h1>{{cal_heading}}</h1>
+				</td>
+				<td class="cal-header-center">
+
+				</td>
+				<td class="cal-header-right">
+					<button disabled>Today</button>
+					<button data-ng-click="perviousMonth()">&lt;</button>
+					<button data-ng-click="nextMonth()">&gt;</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="cal-tbl">
+		<thead>
+			<tr>
+				<th class="cal-day-header" data-ng-repeat="day in days_of_week">{{day}}</th>
+				<!--Day 1 of 7 -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="days in dates">
+				<td data-ng-repeat="day in days" style="border: 1px solid #000;" class="ng-class:isToday(day)">
+					{{formatDate(day)}}
+					<calday data-ng-date="formatDate(day)" get-data-fn="getDataFn()"></calday>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
