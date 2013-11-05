@@ -31,13 +31,17 @@
   </style>
 </head>
 
-<body ng-app="calendarApp" data-ng-controller="calController">
+<body ng-app="zenApp">
 
-{{1 + 1}}
-  {{awesomeThings}}
 
+<cal data-ng-current-date="2013-10-24" ></cal>
+
+<br/>
+<timeslot data-ng-date="'2013-10-24'" data-ng-timeslot="'17:00'"></timeslot>
+  <!--
   <cal data-ng-current-date="2013-10-24">
 </cal>
+-->
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -75,6 +79,7 @@
   <script src="bower_components/angular/angular.js"></script>
 
   <!-- build:js scripts/plugins.js -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
   <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
   <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
   <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
