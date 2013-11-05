@@ -1,13 +1,4 @@
 'use strict';
-window.formatDate = function(date) {
-			var date_num = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
-			var day_num = date.getDay();
-			var month_num = (date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1;//date.getMonth();
-			var fullYear_num =  date.getFullYear();
-			//return days_of_week[day_num]+", "+date_num+ " of "+months[month_num]+" "+fullYear_num;
-			return fullYear_num+"-"+month_num+"-"+date_num;
-	
-		}
 
 var app = angular.module('zenApp');
 
@@ -193,81 +184,15 @@ app.controller('zenCalendarController', function ($scope)
   });
 
 
-app.controller('ZenDayController', function ($scope)
+app.controller('ZenDayController', function ($scope, timeSlotFactory )
 {
 	$scope.day_date = $scope.date;//attrs.ngDate;
 	console.log("$scope.date = "+$scope.date);
     		$scope.dateObj = new Date ($scope.date);
 
 
-    $scope.slots = {		    
-		'07:30':{
-	        'instructor' : 'Cian',
-	        'time':'07:30',
-	        'duration': '60',
-	        'students':['Ann','Mary','Joe','Laura'],
-	        'maxStudents':6,
-	        'name':'S&C',
-	        'Location':'Main',
-	        'description':'This is a Strength & Conditioning Class',
-	        'attachements':['workoutPlan.pdf','records.xls']
-	        },
-	    '08:30':{
-	        'instructor' : 'Cian',
-	        'time':'08:30',
-	        'duration': '60',
-	        'students':['Tim','Max','Pat','Todd'],
-	        'maxStudents':6,
-	        'name':'S&C',
-	        'Location':'Main',
-	        'description':'This is a Strength & Conditioning Class',
-	        'attachements':['workoutPlan.pdf','records.xls']
-	        },
-	    '17:00':{
-	        'instructor' : 'James',
-	        'time':'17:00',
-	        'duration': '60',
-	        'students':['Mick','Jax','Noal','Jane'],
-	        'maxStudents':6,
-	        'name':'S&C',
-	        'Location':'Main',
-	        'description':'This is a Strength & Conditioning Class',
-	        'attachements':['workoutPlan.pdf','records.xls']
-	        },
-	        '18:00':{
-	        'instructor' : 'James',
-	        'time':'18:00',
-	        'duration': '60',
-	        'students':['John','Tom','Dave','Sam'],
-	        'maxStudents':6,
-	        'name':'S&C',
-	        'Location':'Main',
-	        'description':'This is a Strength & Conditioning Class',
-	        'attachements':['workoutPlan.pdf','records.xls']
-	        },
-	        '19:00':{
-	        'instructor' : 'James',
-	        'time':'19:00',
-	        'duration': '60',
-	        'students':['Nick','Kay','Donal','Matt'],
-	        'maxStudents':6,
-	        'name':'S&C',
-	        'Location':'Main',
-	        'description':'This is a Strength & Conditioning Class',
-	        'attachements':['workoutPlan.pdf','records.xls']
-	        },
-	        '20:00':{
-	        'instructor' : 'James',
-	        'time':'20:00',
-	        'duration': '60',
-	        'students':['Jimmy','Angela','Carlos','Jess'],
-	        'maxStudents':6,
-	        'name':'S&C',
-	        'Location':'Main',
-	        'description':'This is a Strength & Conditioning Class',
-	        'attachements':['workoutPlan.pdf','records.xls']
-	        }
-	}
+    $scope.slots = timeSlotFactory.getTimeslots();
+
 	
 
 });
@@ -279,7 +204,8 @@ app.controller('ZenDayController', function ($scope)
 var count = 0;
 app.controller('timeSlotController', function ($scope) {
 	//$scope.timeslot = "7pm";
-	$scope.classname = "  * S&C Class  * ";
+	$scope.classname = $scope.jsonObj.name;
+	console.log("timeslot date: "+$scope.date);
 	
 
 });
@@ -302,7 +228,7 @@ app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
   $scope.open = function () {
 
     var modalInstance = $modal.open({
-      templateUrl: 'views/calendar/schedule_block_popup.html',
+      templateUrl: 'views/calendar/timeslot_popup.html',
       controller: ModalInstanceCtrl,
       resolve: {
         items: function () {
