@@ -20,3 +20,104 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+
+ .cal-event{
+      border: 1px solid #3a87ad;
+      background-color: #3a87ad;
+      color: #fff;
+      font-size: .85em;
+      cursor: default;
+      border-left-width: 1px;
+      border-width: 1px 0;
+      margin-bottom: 1px;
+      border-right-width: 1px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      border-left-width: 1px;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      width:160px;
+    }
+    .cal-day-number{
+      text-align:right;
+      width:100%;
+    }
+    
+    table.cal-tbl, .cal-tbl th , .cal-tbl tr, .cal-tbl td{
+      border: 1px solid #D3D3D3 !important;
+      border-collapse:collapse;
+    }
+    .cal-day-header{
+
+    }
+    .cal-header{
+      width:100%;
+    }
+    .cal-header td{ white-space: nowrap; }
+    .cal-header-left{
+      width: 25%;
+      text-align: left;
+      
+    }
+    .cal-header-left td{
+  
+    
+    }
+    .cal-header-center{
+      text-align: center;
+    }
+      
+    .cal-header-right{
+      width: 25%;
+      text-align: right;
+    }
+    .cal-today{
+      background: black;
+      color:white;
+
+    }
+
+    .zen-event-inner{
+      width: 99%;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid #3a87ad;
+      background-color: #3a87ad;
+      color: #fff;
+      font-size: .85em;
+      text-align: left;
+      border-width: 1px 0;
+      margin-bottom: 1px;
+      border-left-width: 1px;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border-right-width: 1px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    .zen-event-time{
+      font-weight: bold;
+    }
+    .zen-event-title{
+      font-style: italic;
+    }
+    .wrapper{
+      position:relative;
+    
+    }
+    .right{
+      float:right;
+      text-align: right;
+      width:45%;
+    }
+    .left{
+      float:left;
+      width:45%;
+    }
+    .right img{
+      position:absolute;
+      right:0px;
+    }
+
