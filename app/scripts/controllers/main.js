@@ -198,67 +198,12 @@ app.controller('ZenDayController', function ($scope)
 	$scope.day_date = $scope.date;//attrs.ngDate;
 	console.log("$scope.date = "+$scope.date);
     		$scope.dateObj = new Date ($scope.date);
-	//console.log("date: "+$scope.date+" !");
-	/*
-		$scope.day_date = '2013-10-24';//$scope.date;//attrs.ngDate;
-    		$scope.dateObj = new Date ($scope.day_date);//$scope.date);
-    	
-    		$scope.classes=[{time:"7:30", name:"S&C", noOfAttendees:6},
-    						{time:"17:00", name:"S&C", noOfAttendees:9},
-    						{time:"18:00", name:"S&C", noOfAttendees:5},
-    						{time:"19:00", name:"S&C", noOfAttendees:7}];
-
-    		 //scope.getDataFn();
-    		$scope.scheduledClasses =//= scope.getDataFn();
-    		[
-				"2013-09-30",//: scheduledClassFactory.getClasses(), 
-				"2013-10-01",//: scheduledClassFactory.getClasses(), 
-				"2013-10-02",//: scheduledClassFactory.getClasses(), 
-				"2013-10-03",//: scheduledClassFactory.getClasses(), 
-				"2013-10-04",//: scheduledClassFactory.getClasses(), 
-				"2013-10-05",//: scheduledClassFactory.getClasses(), 
-				"2013-10-07",//: scheduledClassFactory.getClasses(), 
-				"2013-10-08",//: scheduledClassFactory.getClasses(), 
-				"2013-10-09",//: scheduledClassFactory.getClasses(), 
-				"2013-10-10",//: scheduledClassFactory.getClasses(), 
-				"2013-10-11",//: scheduledClassFactory.getClasses(), 
-				"2013-10-12",//: scheduledClassFactory.getClasses(), 
-				"2013-10-14",//: scheduledClassFactory.getClasses(), 
-				"2013-10-15",//: scheduledClassFactory.getClasses(), 
-				"2013-10-16",//: scheduledClassFactory.getClasses(), 
-				"2013-10-17",//: scheduledClassFactory.getClasses(), 
-				"2013-10-18",//: scheduledClassFactory.getClasses(), 
-				"2013-10-19",//: scheduledClassFactory.getClasses(), 
-				"2013-10-21",//: scheduledClassFactory.getClasses(), 
-				"2013-10-22",//: scheduledClassFactory.getClasses(), 
-				"2013-10-23",//: scheduledClassFactory.getClasses(), 
-				"2013-10-24",//: scheduledClassFactory.getClasses(), 
-				"2013-10-25",//: scheduledClassFactory.getClasses(), 
-				"2013-10-26",//: scheduledClassFactory.getClasses(), 
-				"2013-10-28",//: scheduledClassFactory.getClasses(), 
-				"2013-10-29",//: scheduledClassFactory.getClasses(), 
-				"2013-10-30",//: scheduledClassFactory.getClasses(), 
-				"2013-10-31",//: scheduledClassFactory.getClasses(), 
-				"2013-11-01",//: scheduledClassFactory.getClasses(), 
-				"2013-11-02"//: scheduledClassFactory.getClasses()
-			];
-	*/
-
-});
 
 
-
-
-
-
-app.controller('timeSlotController', function ($scope) {
-	//$scope.timeslot = "7pm";
-	$scope.classname = "S&C Class";
-
-	$scope.slots = {		    
+    $scope.slots = {		    
 		'07:30':{
 	        'instructor' : 'Cian',
-	        'time':'17:00',
+	        'time':'07:30',
 	        'duration': '60',
 	        'students':['Ann','Mary','Joe','Laura'],
 	        'maxStudents':6,
@@ -269,7 +214,7 @@ app.controller('timeSlotController', function ($scope) {
 	        },
 	    '08:30':{
 	        'instructor' : 'Cian',
-	        'time':'17:00',
+	        'time':'08:30',
 	        'duration': '60',
 	        'students':['Tim','Max','Pat','Todd'],
 	        'maxStudents':6,
@@ -323,6 +268,20 @@ app.controller('timeSlotController', function ($scope) {
 	        'attachements':['workoutPlan.pdf','records.xls']
 	        }
 	}
+	
+
+});
+
+
+
+
+
+var count = 0;
+app.controller('timeSlotController', function ($scope) {
+	//$scope.timeslot = "7pm";
+	$scope.classname = "  * S&C Class  * ";
+	
+
 });
 
 
@@ -334,11 +293,11 @@ app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
 	  $scope.init = function (time, classType) {
 	  	console.log("Init called");
 
-	  	$scope.time = time;
-	  	$scope.classType = classType;
+	  //	$scope.time = time;
+	  //	$scope.classType = classType;
 
 	  };
-	 // init();
+	  $scope.init();
 
   $scope.open = function () {
 
@@ -350,8 +309,7 @@ app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
           return $scope.items;
         },
         classItems: function () {
-        	var classObj = tempClassObj();
-	  		return classObj;
+        	return $scope.jsonObj;
         },
         date: function(){ return $scope.date; }
       }
@@ -367,7 +325,7 @@ app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
 });
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, items, classItems, date) {
-	console.log("classItems.name: "+classItems.name+", date="+date);
+	//console.log("jsonObj.time = "+jsonObj.time);
 	$scope.scheduled_class = classItems;
 	$scope.date = date;
 	$scope.students = classItems.students;
