@@ -1,3 +1,3 @@
 'use strict';
 
-var app = angular.module('calendarApp', []);
+angular.module('zenApp', ['ui.bootstrap']);
