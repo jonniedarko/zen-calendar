@@ -2,6 +2,6 @@
 	<div class="cal-day-number"> 
 		{{ dateObj.getDate() }}
 	</div>
-	<timeslot data-ng-repeat="(name, obj) in slots" data-ng-jsonobj="obj" data-ng-date="obj.name" data-ng-timeslot="name"></timeslot>
+	<timeslot data-ng-repeat="(name, obj) in slots" data-ng-jsonobj="obj" data-ng-date="dateObj" data-ng-timeslot="name"></timeslot>
 
 </div>
