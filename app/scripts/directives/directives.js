@@ -81,7 +81,7 @@ app.directive('timeslot', function() {
     return {
     	restrict: "E",
     	replace:true,
-    	templateUrl: 'views/calendar/schedule_block.html',//Url: 'views/calendar/calendar_template.html',
+    	templateUrl: 'views/calendar/timeslot.html',//Url: 'views/calendar/calendar_template.html',
     	scope:{
     		timeslot: "=ngTimeslot",
     		date: "=ngDate",
