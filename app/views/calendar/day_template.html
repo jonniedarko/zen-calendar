@@ -2,5 +2,6 @@
 	<div class="cal-day-number"> 
 		{{ dateObj.getDate() }}
 	</div>
-	{{ scheduledClasss[dateObj.getDate()] }}
+	<timeslot data-ng-repeat="(name, obj) in slots" data-ng-jsonobj="obj" data-ng-date="obj.name" data-ng-timeslot="name"></timeslot>
+
 </div>
