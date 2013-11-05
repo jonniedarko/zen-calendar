@@ -84,11 +84,12 @@ app.directive('timeslot', function() {
     	templateUrl: 'views/calendar/schedule_block.html',//Url: 'views/calendar/calendar_template.html',
     	scope:{
     		timeslot: "=ngTimeslot",
-    		date: "=ngDate"
+    		date: "=ngDate",
+            jsonObj: "=ngJsonobj"
     	},
         link: function(scope, elm, attrs, ctrl) 
         {
-        	console.log("date: "+scope.date );
+        	console.log("ngJsonobj: "+scope.jsonObj.time );
         },
         controller: 'timeSlotController'
     }
