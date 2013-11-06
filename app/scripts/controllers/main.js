@@ -4,13 +4,6 @@ var app = angular.module('zenApp');
 
 app.controller('zenCalendarController', function ($scope) 
 {
-	//console.log("UserService is logged in: "+ $scope._UserService.getUserSchedule());
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
     $scope.today = new Date();
     var selected_Date = null;	
   
@@ -19,17 +12,7 @@ app.controller('zenCalendarController', function ($scope)
 		var days_in_month = $scope.number_of_days_in_month;
 	
         //function formatDate(date)
-		$scope.formatDate = function(date) {
-			var date_num = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
-			var day_num = date.getDay();
-			var month_num = (date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1;//date.getMonth();
-			var fullYear_num =  date.getFullYear();
-			//return days_of_week[day_num]+", "+date_num+ " of "+months[month_num]+" "+fullYear_num;
-			 
-			return fullYear_num+"-"+month_num+"-"+date_num;
-			//return '2013-10-01';
-			
-		}
+		
 		$scope.getDayOfWeekIndex= function (date){
 
 			return date.getDay();
@@ -124,14 +107,14 @@ app.controller('zenCalendarController', function ($scope)
 			selected_Date = new Date(selected_Date.getFullYear(),selected_Date.getMonth()-1, 1 );
 			$scope.setCalendarDates(selected_Date);
 			$scope.date = $scope.formatDate(selected_Date);
-			$scope.cal_heading = months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
+			$scope.cal_heading = $scope.months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
 
 		}
 		$scope.nextMonth = function(){
 			selected_Date = new Date(selected_Date.getFullYear(),selected_Date.getMonth()+1, 1 );
 			$scope.setCalendarDates(selected_Date);
 			$scope.date = $scope.formatDate(selected_Date);
-			$scope.cal_heading = months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
+			$scope.cal_heading = $scope.months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
 		}
 
 		 function init(){
