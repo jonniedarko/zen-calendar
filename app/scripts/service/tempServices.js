@@ -93,3 +93,63 @@ app.factory('timeSlotFactory', function () {
 
 	}
 });
+
+app.factory('tempUserAuthenticationFactory', function () {
+
+
+	return{
+		login: function ( username, password) {
+
+			console.log("User logged In");
+
+		},
+
+		isLoggedIn: function (){
+			return true;
+		},
+
+		getLoggedInUser: function () {
+			return {
+				id: 1,
+				name: 'Joe Bloggs'
+			}
+		},
+		
+	}
+
+});
+
+app.factory('UserService', function () {
+	return {
+		getUserInfo: function (id) {
+
+			return {
+				id: 1,
+				name: 'Joe Bloggs'
+			}
+
+		},
+		getUserSchedule: function (id) {
+
+			return [
+					{
+			        'Day':1,
+			        'time':'07:30',
+			        'attachements':['IndivualWorkoutPlan.pdf','resultTracking.xls']
+			        },
+			        {
+			        'Day':3,
+			        'time':'19:00',
+			        'attachements':['IndivualWorkoutPlan.pdf','resultTracking.xls']
+			        },
+			        {
+			        'Day':5,
+			        'time':'19:00',
+			        'attachements':['IndivualWorkoutPlan.pdf','resultTracking.xls']
+			        }
+				];
+			
+
+		}
+	}
+});
