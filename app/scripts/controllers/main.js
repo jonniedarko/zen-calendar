@@ -4,6 +4,7 @@ var app = angular.module('zenApp');
 
 app.controller('zenCalendarController', function ($scope) 
 {
+	//console.log("UserService is logged in: "+ $scope._UserService.getUserSchedule());
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -13,14 +14,9 @@ app.controller('zenCalendarController', function ($scope)
     $scope.today = new Date();
     var selected_Date = null;	
   
-		var days_of_week = ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-		$scope.days_of_week = days_of_week;
-
-		var months = ['January', 'February', 'March', 'April','May', 'June', 
-					'July', 'August', 'September','October', 'November', 'December'];
-				$scope.month_labels = months;
-		var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
+		
+		$scope.month_labels = $scope.months;
+		var days_in_month = $scope.number_of_days_in_month;
 	
         //function formatDate(date)
 		$scope.formatDate = function(date) {
@@ -152,7 +148,7 @@ app.controller('zenCalendarController', function ($scope)
    		
 			$scope.setCalendarDates(selected_Date);
 			$scope.date = $scope.formatDate(selected_Date);
-			$scope.cal_heading = months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
+			$scope.cal_heading = $scope.months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
 
 			
 			
@@ -187,7 +183,7 @@ app.controller('zenCalendarController', function ($scope)
 app.controller('ZenDayController', function ($scope, timeSlotFactory )
 {
 	$scope.day_date = $scope.date;//attrs.ngDate;
-	console.log("$scope.date = "+$scope.date);
+	//console.log("$scope.date = "+$scope.date);
     		$scope.dateObj = new Date ($scope.date);
 
 
@@ -202,28 +198,41 @@ app.controller('ZenDayController', function ($scope, timeSlotFactory )
 
 
 var count = 0;
-app.controller('timeSlotController', function ($scope) {
+app.controller('timeSlotController', function ($scope, UserService, timeSlotFactory) {
 	//$scope.timeslot = "7pm";
 	$scope.classname = $scope.jsonObj.name;
-	console.log("timeslot date: "+$scope.date);
-	
+	//console.log("timeslot date: "+$scope.date);
+	$scope.dateObj = $scope.$parent.dateObj;
 
-});
+	$scope.isAttending= function (time, date){
+		var currentUser = $scope._UserService.getLoggedInUser();
+		var bookedSlots = UserService.getUserSchedule(currentUser.id);
+		var timeslots = timeSlotFactory.getTimeslots();
+		//console.log("classes "+JSON.stringify(timeslots) );
+		//console.log("$scope.date.getDay()"+$scope.date.getDay()+" ******* date.getDay()"+date.getDay());
+		
+			
+			for(var i=0 ; i<bookedSlots.length; i++ ){
+				//console.log("bookedSlots[i].Day"+bookedSlots[i].Day+" ******* date.getDay()"+date.getDay());
+				if(bookedSlots[i].Day == date.getDay()){
+					if(bookedSlots[i].time === time){
+						//console.log("True :");
+						return true;
+						
+					}
+				}
+			}
+
+//console.log("$scope.date.getDay() "+$scope.date.getDay());
+		
+		}
+	//$scope.isAttending('07:30', new Date());
+
+	});
 
 
 app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
-	  $scope.items = ['item1', 'item2', 'item3'];
-	  	$scope.time = "test";
-	  	$scope.classType= "test";
 
-	  $scope.init = function (time, classType) {
-	  	console.log("Init called");
-
-	  //	$scope.time = time;
-	  //	$scope.classType = classType;
-
-	  };
-	  $scope.init();
 
   $scope.open = function () {
 
@@ -244,7 +253,7 @@ app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
     modalInstance.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
     }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
+      //$log.info('Modal dismissed at: ' + new Date());
     });
   };
 
