@@ -28,7 +28,6 @@
 		<tbody>
 			<tr data-ng-repeat="days in dates">
 				<td data-ng-repeat="day in days" style="border: 1px solid #000;" class="ng-class:isToday(day)">
-					{{formatDate(day)}}
 					<calday data-ng-date="formatDate(day)" get-data-fn="getDataFn()"></calday>
 				</td>
 			</tr>
