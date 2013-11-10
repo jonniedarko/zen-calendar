@@ -11,7 +11,6 @@ app.controller('zenCalendarController', function ($scope)
 		$scope.month_labels = $scope.months;
 		var days_in_month = $scope.number_of_days_in_month;
 	
-        //function formatDate(date)
 		
 		$scope.getDayOfWeekIndex= function (date){
 
@@ -47,7 +46,6 @@ app.controller('zenCalendarController', function ($scope)
 		
 		$scope.getPerviousMonthDays=function(date){
 			var pervious_month_days = [];
-			//get day index for 1st day of current month
 			var first_ofCurrentMonth = $scope.getFirstDateOfMonth(date);
 			var day_index = first_ofCurrentMonth.getDay();
 			var decrementer = 1;
@@ -65,7 +63,7 @@ app.controller('zenCalendarController', function ($scope)
 			var next_month_days = [];
 			var lastDay = $scope.getLastDateOfMonth(date);
 			var lastDayIndex = lastDay.getDay();
-			var day_index = 7 - lastDayIndex;//getDayOfWeekIndex($scope.getLastDateOfMonth(date));
+			var day_index = 7 - lastDayIndex;
 			var incrementer = 1
 			for(var i = lastDayIndex+1; i < 7 ; i++ ){
 				var tempDate = new Date($scope.getLastDateOfMonth(date));
@@ -79,10 +77,7 @@ app.controller('zenCalendarController', function ($scope)
 		}
 		
 		$scope.getDaysToRender=function(date){
-			//pervious month days = date - current days 
 			var pervious_month_days = $scope.getPerviousMonthDays(date);
-
-			//for(var i=1 ; i<= ){}
 			var current_month_days= [];
 			var str = $scope.formatDate(date);
 			for(var i = 0 ;i<days_in_month[date.getMonth()]; i++ ){
@@ -118,18 +113,8 @@ app.controller('zenCalendarController', function ($scope)
 		}
 
 		 function init(){
-		
-				//if(date == undefined ) selected_Date = new Date();
-			//else selected_Date = date;
-			
-			//if(attrs.ngCurrentDate == undefined){
-				selected_Date = new Date(2013, 9, 1);
-   			/*}
-   			else{
-   				selected_Date = new Date(attrs.ngCurrentDate);
-   			}*/
-   		
-			$scope.setCalendarDates(selected_Date);
+			selected_Date = new Date(2013, 9, 1);
+   			$scope.setCalendarDates(selected_Date);
 			$scope.date = $scope.formatDate(selected_Date);
 			$scope.cal_heading = $scope.months[selected_Date.getMonth()]+" "+selected_Date.getFullYear();
 
@@ -196,21 +181,14 @@ app.controller('timeSlotController', function ($scope, UserService, timeSlotFact
 		
 			
 			for(var i=0 ; i<bookedSlots.length; i++ ){
-				//console.log("bookedSlots[i].Day"+bookedSlots[i].Day+" ******* date.getDay()"+date.getDay());
 				if(bookedSlots[i].Day == date.getDay()){
 					if(bookedSlots[i].time === time){
-						//console.log("True :");
 						return true;
 						
 					}
 				}
 			}
-
-//console.log("$scope.date.getDay() "+$scope.date.getDay());
-		
 		}
-	//$scope.isAttending('07:30', new Date());
-
 	});
 
 
@@ -234,16 +212,14 @@ app.controller('ScheduledClassPopUpCtrl', function ($scope, $modal, $log){
     });
 
     modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      //$log.info('Modal dismissed at: ' + new Date());
+      		$scope.selected = selectedItem;
+    	}, function () {
     });
   };
 
 });
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, items, classItems, date) {
-	//console.log("jsonObj.time = "+jsonObj.time);
 	$scope.scheduled_class = classItems;
 	$scope.date = date;
 	$scope.students = classItems.students;
